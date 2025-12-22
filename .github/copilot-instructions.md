@@ -39,6 +39,21 @@ golangci-lint run
 go build ./...
 ```
 
+## Git & GitHub procedure
+
+- `main` is protected: create a feature branch, push, and open a PR.
+- This repo may not vendor shared assets yet. If the change is documentation-only (e.g., README links), keep the PR strictly scoped.
+- If/when shared vendoring is introduced here, follow the same contract as other repos:
+	- pin the shared tag in `.loopwish/shared.ref`
+	- vendor files under `vendor/shared/...`
+	- add a verification script and keep it in sync with any new vendored paths
+- After merge, clean up local branches safely:
+
+```bash
+git fetch --prune
+git branch --merged origin/main
+```
+
 ## Safety
 
 - Never commit `.env` or secrets.
